@@ -536,9 +536,9 @@ def treats():
 
 
 #------SURGERY COMPLETE------
-def e():
+def surgery_complete():
     mycursor = mydb.cursor()
-    print('------ Complete e ------\n')
+    print('------ Complete Surgery ------\n')
     surg=input("What type of Surgery : ")
     P_ID=input("What Patient [Their ID] : ")
     sql = 'SELECT surgery_id FROM Surgery WHERE type_of="%s"' % (surg)
