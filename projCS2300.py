@@ -70,13 +70,9 @@ def displayAgFuncMenu():
     print("----------------------------")
 
 def exit():
-    n = int(input("Press \'0\' to exit: "))
-    if n==0:
-        os.system('cls')
-        run()
-    else:
-        print("Invalid entry")
-        exit()
+    n = input("Press Enter to continue: ")
+    os.system('cls')
+    run()
 
 
 #------PATIENT QUERIES------
@@ -197,7 +193,6 @@ def fire_employee():
 
     if n == 1:
         os.system("cls")
-        Name = input('Enter Nurse name : ')
         NurseID = input('Enter Nurse ID : ')
 
         #sql in here too
@@ -210,11 +205,11 @@ def fire_employee():
         exit()
     elif n == 2:
         os.system("cls")
-        DoctorID = input("Enter Doctor ID : ")
+        DoctorID = int(input("Enter Doctor ID : "))
 
 
         #sql goes heresql = 'INSERT INTO `Nurse` (`Name`,`Did`) VALUES (%s, %i)'
-        sql = 'DELETE FROM `Doctor` id=%s' % (DoctorID)
+        sql = 'DELETE FROM `Doctor` WHERE id=%s' % (DoctorID)
         mycursor.execute(sql)
         mydb.commit()
 
@@ -282,9 +277,9 @@ def showDoctors():
     mycursor.execute('SELECT * FROM doctor')
     doctorList = mycursor.fetchall()
     for d in doctorList:
-        print("--Doctor", p[0], "--")
-        print("Name:", p[1])
-        print("Specialization:", p[2])
+        print("--Doctor", d[0], "--")
+        print("Name:", d[1])
+        print("Specialization:", d[2])
         print("\n")
     print("All Doctors listed")
     exit()
@@ -295,9 +290,9 @@ def showNurses():
     mycursor.execute('SELECT * FROM nurse')
     nurseList = mycursor.fetchall()
     for n in nurseList:
-        print("--Nurse", p[0], "--")
-        print("Name:", p[1])
-        print("Assigned Doctor ID:", p[2])
+        print("--Nurse", n[0], "--")
+        print("Name:", n[1])
+        print("Assigned Doctor ID:", n[2])
         print("\n")
     print("All Nurses listed")
     exit()
