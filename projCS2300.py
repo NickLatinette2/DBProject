@@ -18,32 +18,30 @@ def displayMainMenu():
     print("2. Employee")
     print("3. Department")
     print("4. Surgery")
-    print("5. Assign Doctor to Surgery") #Conduct
-    print("6. Assign Surgery to Patient") #Undergoes
-    print("7. Assigns a Doctor to Department") #Works_For
-    print("8. Assign Doctor to Patient") #Treats
-    print("9. Mark a Surgery as Complete") #Surgery Complete
-    print("10. Aggregate Functions")
+    print("5. Assigns a Doctor to Department") #Works_For
+    print("6. Assign Doctor to Patient") #Treats
+    print("7. Mark a Surgery as Complete") #Surgery Complete
+    print("8. Aggregate Functions")
     print("----------------------------")
 
 def displayPatientMenu():
-    print("-----------PATIENT----------") #All good!
+    print("-----------PATIENT----------") 
     print("0. exit")
-    print("1. Add")# Works
-    print("2. Modify")# WOrks
-    print("3. Discharge")# Works
-    print("4. Show All")# Works
+    print("1. Add")
+    print("2. Modify")
+    print("3. Discharge")
+    print("4. Show All")
     print("----------------------------")
 
 def displayEmployeeMenu():
     print("---------EMPLOYEE----------")
     print("0. exit")
-    print("1. Hire Employee")# Works both!
-    print("2. Fire Employee")# Works both!
-    print("3. Modify Employee")# Works Both!
-    print("4. Reassign Nurse")# 99% this works
-    print("5. Show All Doctors")# Works
-    print("6. Show All Nurses")# Works
+    print("1. Hire Employee") 
+    print("2. Fire Employee") 
+    print("3. Modify Employee") 
+    print("4. Reassign Nurse")
+    print("5. Show All Doctors")
+    print("6. Show All Nurses")
     print("----------------------------")
 
 def displayDepartmentMenu():
@@ -55,10 +53,12 @@ def displayDepartmentMenu():
     print("4. Show All")#
     print("----------------------------")
 
-def displaySurgeryMenu():
+def displaySurguryMenu():
     print("-----------SURGERY----------")
     print("0. exit")
     print("1. Show All")#
+    print("2. Assign Doctor to Surgery") #Conduct
+    print("3. Assign Surgery to Patient")
     print("----------------------------")
 
 def displayAgFuncMenu():
@@ -422,7 +422,7 @@ def showDepts():
 
 
 #------SURGERY QUERIES------
-def showSurgeries():
+def showsurgeries():
     mycursor = mydb.cursor()
     print("--All Surgeries--\n")
     mycursor.execute('SELECT * FROM surgery')
@@ -491,9 +491,9 @@ def assign_procedure():
 
 
 #------UNDERGOES------
-def conduct_surgury():
+def e():
     mycursor = mydb.cursor()
-    print('------ Conduct Surgury ------\n')
+    print('------ Conduct Surgery ------\n')
     surg=input("What type of Surgery : ")
     PID=input("What Patient [Their ID] : ")
     sql = 'SELECT surgery_id FROM Surgery WHERE type_of="%s"' % (surg)
@@ -536,9 +536,9 @@ def treats():
 
 
 #------SURGERY COMPLETE------
-def surgury_complete():
+def e():
     mycursor = mydb.cursor()
-    print('------ Complete Surgury ------\n')
+    print('------ Complete e ------\n')
     surg=input("What type of Surgery : ")
     P_ID=input("What Patient [Their ID] : ")
     sql = 'SELECT surgery_id FROM Surgery WHERE type_of="%s"' % (surg)
@@ -637,33 +637,33 @@ def run():
             run()
     elif choice == 4: #Surgery Submenu
         os.system('cls')
-        displaySurgeryMenu()
+        displaySurguryMenu()
         subchoice = int(input("Please choose an option: "))
         if subchoice == 0: #exit
             os.system('cls')
             exit()
         elif subchoice == 1: #Show All
             os.system('cls')
-            showSurgeries()
+            showsurgeries()
+        elif subchoice == 2:
+            os.system('cls')
+            assign_procedure()
+        elif subchoice == 3:
+            os.system('cls')
+            assign_procedure()
         else:                #other
             os.system('cls')
             run()
-    elif choice == 5: #Conducts
-        os.system('cls')
-        assign_procedure()
-    elif choice == 6: #Undergoes
-        os.system('cls')
-        conduct_surgury()
-    elif choice == 7: #Works_For
+    elif choice == 5: #Works_For
         os.system('cls')
         worksFor()
-    elif choice == 8: #Treats
+    elif choice == 6: #Treats
         os.system('cls')
         treats()
-    elif choice == 9: #Surgery Complete
+    elif choice == 7: #Surgery Complete
         os.system('cls')
-        surgury_complete()
-    elif choice == 10: #Aggregate Function Submenu
+        surgery_complete()
+    elif choice == 8: #Aggregate Function Submenu
         os.system('cls')
         displayAgFuncMenu()
         subchoice = int(input("Please choose an option: "))
