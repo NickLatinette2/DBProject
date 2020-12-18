@@ -60,3 +60,51 @@ CREATE TABLE works_for (
     FOREIGN KEY(did) REFERENCES doctor(id),
     FOREIGN KEY(dnum) REFERENCES department(dept_num)
 );
+
+INSERT INTO patient VALUES (1, "Fatlind", 20, "M", true, "Heart attack");
+INSERT INTO patient VALUES (2, "Bharat", 59, "M", true, "Broken leg");
+INSERT INTO patient VALUES (3, "Nick", 10, "M", true, "Headache");
+INSERT INTO patient VALUES (4, "Svetlana", 34, "F", true, "LA Rams fan");
+
+INSERT INTO doctor VALUES (1, "Dr. Doom", "Cardiology");
+INSERT INTO doctor VALUES (2, "Dr. Mouse", "Neurosurgery");
+INSERT INTO doctor VALUES (3, "Dr. Doktor", "Orthopedics");
+INSERT INTO doctor VALUES (4, "Dr. Holt", "Orthopedics");
+INSERT INTO doctor VALUES (5, "Dr. Strange", "Cardiology");
+
+INSERT INTO department VALUES (1, 5000000.00, "Cardiology", 5);
+INSERT INTO department VALUES (2, 2000000.00, "Orthopedics", 3);
+INSERT INTO department VALUES (3, 10000000.00, "Neurosurgery", 2);
+
+INSERT INTO surgery VALUES (1, 52.37, "Heart surgery", 10000.00);
+INSERT INTO surgery VALUES (2, 12.56, "Leg replacement", 5000.00);
+INSERT INTO surgery VALUES (3, 88.99, "Lobotomy", 40000.00);
+
+INSERT INTO nurse VALUES (1, "Nurse Liza", 1);
+INSERT INTO nurse VALUES (2, "Nurse Toby", 2);
+INSERT INTO nurse VALUES (3, "Nurse Kim", 3);
+INSERT INTO nurse VALUES (4, "Nurse Chang", 3);
+INSERT INTO nurse VALUES (5, "Nurse Ahmed", 4);
+INSERT INTO nurse VALUES (6, "Nurse Herschel", 5);
+
+INSERT INTO undergoes VALUES (1, 1); /* Fatlind, heart surgery */
+INSERT INTO undergoes VALUES (2, 2); /* Bharat, leg replacement */
+INSERT INTO undergoes VALUES (3, 3); /* Nick, Lobotomy */
+INSERT INTO undergoes VALUES (4, 3); /* Svetlana, Lobotomy */
+
+INSERT INTO conducts VALUES (1, 1); /* heart surgery, Dr. Doom */
+INSERT INTO conducts VALUES (3, 2); /* lobotomy, Dr. Mouse */
+INSERT INTO conducts VALUES (2, 3); /* leg replacement, Dr. Doktor */
+INSERT INTO conducts VALUES (2, 4); /* leg replacement, Dr. Holt */
+INSERT INTO conducts VALUES (1, 5); /* heart surgery, Dr. Strange */
+
+INSERT INTO treats VALUES (1, 1); /* Fatlind, Dr. Doom */
+INSERT INTO treats VALUES (2, 4); /* Bharat, Dr. Holt */
+INSERT INTO treats VALUES (3, 2); /* Nick, Dr. Mouse */
+INSERT INTO treats VALUES (4, 2); /* Svetlana, Dr. Mouse */
+
+INSERT INTO works_for VALUES (1, 1); /* Dr. Doom, Cardiology */
+INSERT INTO works_for VALUES (2, 3); /* Dr. Mouse, Cardiology */
+INSERT INTO works_for VALUES (3, 2); /* Dr. Doktor, Cardiology */
+INSERT INTO works_for VALUES (4, 2); /* Dr. Holt, Cardiology */
+INSERT INTO works_for VALUES (5, 1); /* Dr. Strange, Cardiology */
