@@ -15,12 +15,12 @@ def displayMainMenu():
     print("------------MENU------------")
     print("0. exit")
     print("1. Patient")
-    print("2. Empolyee")
+    print("2. Employee")
     print("3. Department")
     print("4. Surgery")
     print("5. Assign Doctor to Surgery") #Conduct
     print("6. Assign Surgery to Patient") #Undergoes
-    print("7. Assign Nurse to Doctor") #Works_For
+    print("7. Assigns a Doctor to Department") #Works_For
     print("8. Assign Doctor to Patient") #Treats
     print("9. Mark a Surgery as Complete") #Surgery Complete
     print("10. Aggregate Functions")
@@ -511,12 +511,10 @@ def conduct_surgury():
 def worksFor():
     mycursor = mydb.cursor()
     print("----Set Doctor to Department----")
-    showDoctors()
-    doctorID = int(input("Doctor ID to choose where they work? "))
-    showDepts()
-    deptID = int(input("Department ID in Which they will work in? "))
+    doctorID = int(input("Doctor ID to choose where they work : "))
+    deptID = int(input("Department ID in Which they will work in : "))
     sql = 'INSERT INTO works_for (doctorID, deptID) VALUES (%s,%s)'
-    val(doctorID, deptID)
+    val = (doctorID, deptID)
     mycursor.execute(sql,val)
     mydb.commit()
     exit()
@@ -526,12 +524,10 @@ def worksFor():
 def treats():
     mycursor = mydb.cursor()
     print("----Doctor treating Patients----")
-    showPatients()
-    patientID = int(input("Patient ID being treated? "))
-    showDoctors()
-    doctorID = int(input("Doctor ID to treat Patient? "))
-    sql = 'INSERT INTO treats (patientID, doctorID) VALUES (%s,%s)'
-    val(patientID, doctorID)
+    patientID = int(input("Patient ID being treated : "))
+    doctorID = int(input("Doctor ID to treat Patient : "))
+    sql = 'INSERT INTO treats (pid, did) VALUES (%s,%s)'
+    val = (patientID, doctorID)
     mycursor.execute(sql,val)
     mydb.commit()
     exit()
@@ -546,17 +542,12 @@ def surgury_complete():
     sql = 'SELECT surgery_id FROM Surgery WHERE type_of="%s"' % (surg)
     mycursor.execute(sql)
     val1 = mycursor.fetchone();
-    val1=val1[0]
+    val1 = val1[0]
     sql = 'DELETE FROM undergoes WHERE (sid="%s" AND pid=%s)'
     val = (val1, int(P_ID))
     mycursor.execute(sql,val)
     mydb.commit()
     exit()
-
-
-
-
-
 
 
 #------EXECUTES------
@@ -682,7 +673,7 @@ def run():
             avgMort()
         elif subchoice == 2: #Average Cost
             os.system('cls')
-            avgCost
+            avgCost()
         elif subchoice == 3: #Max Budget
             os.system('cls')
             maxBudget()
