@@ -1,0 +1,62 @@
+CREATE TABLE patient (
+	id INT AUTO_INCREMENT,
+    name VARCHAR(80) NOT NULL,
+    age INT,
+    gender VARCHAR(1),
+    health_insurance BOOLEAN,
+    preexist_cond VARCHAR(150),
+    PRIMARY KEY(id)
+);
+CREATE TABLE doctor (
+	id INT AUTO_INCREMENT,
+    name VARCHAR(80) NOT NULL,
+    specialization VARCHAR(80),
+    PRIMARY KEY(id)
+);
+CREATE TABLE department (
+	dept_num INT AUTO_INCREMENT,
+    budget DECIMAL(11, 2),
+    dp_name VARCHAR(80) NOT NULL UNIQUE,
+    hd_id INT /*Head Doctor*/,
+    PRIMARY KEY(dept_num),
+    FOREIGN KEY(hd_id) REFERENCES doctor(id)
+);
+CREATE TABLE surgery (
+	surgery_id INT AUTO_INCREMENT,
+    mortality_rate DECIMAL(4, 2) CHECK (mortality_rate>=0 and mortality_rate<100),
+    type_of VARCHAR(80) UNIQUE,
+    cost DECIMAL(7, 2),
+    PRIMARY KEY(surgery_id)
+);
+CREATE TABLE nurse (
+	nid INT AUTO_INCREMENT,
+    name VARCHAR(80),
+    did INT,
+    PRIMARY KEY(nid),
+    FOREIGN KEY(did) REFERENCES doctor(id)    
+);
+CREATE TABLE undergoes (
+	sid INT,
+    pid INT,
+    PRIMARY KEY(sid, pid),
+    FOREIGN KEY(pid) REFERENCES patient(id)
+);
+CREATE TABLE conducts (
+	sid INT,
+    did INT,
+    PRIMARY KEY(sid, did),
+    FOREIGN KEY(sid) REFERENCES surgery(surgery_id),
+    FOREIGN KEY(did) REFERENCES doctor(id)
+);
+CREATE TABLE treats (
+	pid INT,
+    did INT,
+    FOREIGN KEY(pid) REFERENCES patient(id),
+    FOREIGN KEY(did) REFERENCES doctor(id)
+);
+CREATE TABLE works_for (
+	did INT,
+    dnum INT,
+    FOREIGN KEY(did) REFERENCES doctor(id),
+    FOREIGN KEY(dnum) REFERENCES department(dept_num)
+);
