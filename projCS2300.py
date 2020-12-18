@@ -491,7 +491,7 @@ def assign_procedure():
 
 
 #------UNDERGOES------
-def e():
+def conduct_surgery():
     mycursor = mydb.cursor()
     print('------ Conduct Surgery ------\n')
     surg=input("What type of Surgery : ")
@@ -650,7 +650,7 @@ def run():
             assign_procedure()
         elif subchoice == 3:
             os.system('cls')
-            assign_procedure()
+            conduct_surgery()
         else:                #other
             os.system('cls')
             run()
