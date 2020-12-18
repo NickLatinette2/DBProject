@@ -329,8 +329,8 @@ def modify_department():
         HDID = input('Enter Head-Doctor ID : ')
 
         #sql in here too
-        sql = 'UPDATE `DEPARTMENT` SET BUDGET=%s, SET HD_ID=%s, WHERE dp_name=%s' % (deptname)
-        val = (_Budget, HDID, deptname)
+        sql = 'UPDATE `DEPARTMENT` SET BUDGET=%s, HD_ID=%s WHERE dp_name=%s'
+        val = (_Budget, int(HDID), deptname)
         mycursor.execute(sql,val)
         mydb.commit()
 
@@ -343,7 +343,7 @@ def modify_department():
         _Budget = input('Enter Budget of Dept. : ')
         HDID = input('Enter Head-Doctor ID : ')
 
-        sql = 'UPDATE `DEPARTMENT` SET BUDGET = %s, SET HD_ID=%s, WHERE dept_num=%s'
+        sql = 'UPDATE `DEPARTMENT` SET BUDGET = %s, HD_ID=%s WHERE dept_num=%s'
         val = (_Budget, HDID, dnum)
         mycursor.execute(sql,val)
         mydb.commit()
@@ -482,6 +482,7 @@ def assign_procedure():
     sql='SELECT id FROM `Doctor` WHERE name="%s"' % (Dname)
     mycursor.execute(sql)
     val2 = mycursor.fetchone();
+    val2 = val2[0]
     sql = 'INSERT INTO `conducts` VALUES (%s,%s)'
     val = (val1, val2)
     mycursor.execute(sql,val)
