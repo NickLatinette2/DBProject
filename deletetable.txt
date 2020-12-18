@@ -1,0 +1,9 @@
+DROP TABLE `hospital_database`.`works_for`;
+DROP TABLE `hospital_database`.`treats`;
+DROP TABLE `hospital_database`.`conducts`;
+DROP TABLE `hospital_database`.`undergoes`;
+DROP TABLE `hospital_database`.`nurse`;
+DROP TABLE `hospital_database`.`surgery`;
+DROP TABLE `hospital_database`.`department`;
+DROP TABLE `hospital_database`.`doctor`;
+DROP TABLE `hospital_database`.`patient`;
