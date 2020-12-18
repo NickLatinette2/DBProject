@@ -4,12 +4,12 @@ import os
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="!Ilovechewy123"
+    passwd="!Ilovechewy123" #PASSWORD SHOULD BE WHATEVER FOR YOUR LOCAL MACHINE
 )
 
 def initDB():
     mycursor = mydb.cursor()
-    mycursor.execute('USE thefinaldb')
+    mycursor.execute('USE thefinaldb') #thefinaldb should be changed to whatever your local db is called
 
 def displayMainMenu():
     print("------------MENU------------")
@@ -23,7 +23,7 @@ def displayMainMenu():
     print("7. Assign Nurse to Doctor") #Works_For
     print("8. Assign Doctor to Patient") #Treats
     print("9. Mark a Surgery as Complete") #Surgery Complete
-    print("9. Aggregate Functions")
+    print("10. Aggregate Functions")
     print("----------------------------")
 
 def displayPatientMenu():
@@ -46,7 +46,7 @@ def displayEmployeeMenu():
     print("6. Show All Nurses")#
     print("----------------------------")
 
-def displayDepartementMenu():
+def displayDepartmentMenu():
     print("------------DEPT------------")
     print("0. exit")
     print("1. Add")#
@@ -412,10 +412,10 @@ def showDepts():
     mycursor.execute('SELECT * FROM department')
     deptList = mycursor.fetchall()
     for d in deptList:
-        print("--Department", p[0], "--")
-        print("Budget: $", p[1])
-        print("Name:", p[2])
-        print("Head Doctor ID:", p[3])
+        print("--Department", d[0], "--")
+        print("Budget: $", d[1])
+        print("Name:", d[2])
+        print("Head Doctor ID:", d[3])
         print("\n")
     print("All Departments listed")
     exit()
@@ -428,10 +428,10 @@ def showSurgeries():
     mycursor.execute('SELECT * FROM surgery')
     surgeryList = mycursor.fetchall()
     for s in surgeryList:
-        print("--Surgery", p[0], "--")
-        print("Mortality Rate:", p[1], "%")
-        print("Surgery Type:", p[2])
-        print("Cost: $", p[3])
+        print("--Surgery", s[0], "--")
+        print("Mortality Rate:", s[1], "%")
+        print("Surgery Type:", s[2])
+        print("Cost: $", s[3])
         print("\n")
     print("All Surgeries listed")
     exit()
@@ -482,7 +482,6 @@ def assign_procedure():
     sql='SELECT id FROM `Doctor` WHERE name="%s"' % (Dname)
     mycursor.execute(sql)
     val2 = mycursor.fetchone();
-    val2 = val2[0]
     sql = 'INSERT INTO `conducts` VALUES (%s,%s)'
     val = (val1, val2)
     mycursor.execute(sql,val)
@@ -620,7 +619,7 @@ def run():
             run()
     elif choice == 3: #Department Submenu
         os.system('cls')
-        displayDepartementMenu()
+        displayDepartmentMenu()
         subchoice = int(input("Please choose an option: "))
         if subchoice == 0: #exit
             os.system('cls')
