@@ -24,7 +24,6 @@ def displayMainMenu():
     print("8. Assign Doctor to Patient") #Treats
     print("9. Mark a Surgery as Complete") #Surgery Complete
     print("9. Aggregate Functions")
-    print("10. Nuke (Delete everything)")
     print("----------------------------")
 
 def displayPatientMenu():
@@ -560,24 +559,6 @@ def surgury_complete():
     exit()
 
 
-#------NUKE------
-def nuke():
-    print("#### THREAT LEVEL ALPHA ####")
-    print("THIS HOSPITAL IS MARKED FOR DESTRUCTION")
-    print("DELETING ALL RECORDS...")
-    mycursor = mydb.cursor()
-    mycursor.execute('DROP TABLE `hospital_database`.`works_for`')
-    mycursor.execute('DROP TABLE `hospital_database`.`treats`')
-    mycursor.execute('DROP TABLE `hospital_database`.`conducts`')
-    mycursor.execute('DROP TABLE `hospital_database`.`undergoes`')
-    mycursor.execute('DROP TABLE `hospital_database`.`nurse`')
-    mycursor.execute('DROP TABLE `hospital_database`.`surgery`')
-    mycursor.execute('DROP TABLE `hospital_database`.`department`')
-    mycursor.execute('DROP TABLE `hospital_database`.`doctor`')
-    mycursor.execute('DROP TABLE `hospital_database`.`patient`')
-    print("ALL RECORDS OF THIS HOSPITAL HAVE BEEN DELETED.")
-    exit()
-
 
 
 
@@ -713,9 +694,6 @@ def run():
         else:                #other
             os.system('cls')
             run()
-    elif choice == 11: #Nuke
-        os.system('cls')
-        nuke()
     else:             #other
         os.system('cls')
         run()
