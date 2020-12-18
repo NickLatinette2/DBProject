@@ -27,23 +27,23 @@ def displayMainMenu():
     print("----------------------------")
 
 def displayPatientMenu():
-    print("-----------PATIENT----------")
+    print("-----------PATIENT----------") #All good!
     print("0. exit")
-    print("1. Add")#
-    print("2. Modify")#
-    print("3. Discharge")#
-    print("4. Show All")#
+    print("1. Add")# Works
+    print("2. Modify")# WOrks
+    print("3. Discharge")# Works
+    print("4. Show All")# Works
     print("----------------------------")
 
 def displayEmployeeMenu():
     print("---------EMPLOYEE----------")
     print("0. exit")
-    print("1. Hire Employee")#
-    print("2. Fire Employee")#
-    print("3. Modify Employee")#
-    print("4. Reassign Nurse")#
-    print("5. Show All Doctors")#
-    print("6. Show All Nurses")#
+    print("1. Hire Employee")# Works both!
+    print("2. Fire Employee")# Works both!
+    print("3. Modify Employee")# Works Both!
+    print("4. Reassign Nurse")# 99% this works
+    print("5. Show All Doctors")# Works
+    print("6. Show All Nurses")# Works
     print("----------------------------")
 
 def displayDepartmentMenu():
@@ -246,10 +246,10 @@ def modify_employee():
         print("--Doctor Modification Complete--")
         exit()
     elif choice == 1:
-        nurseID = int(input("Enter Doctor ID for modifications: "))
+        nurseID = int(input("Enter Nurse ID for modifications: "))
         nurseName = input("Enter Previous or new Nurse name: ")
 
-        sql = 'UPDATE nurse SET name=%s WHERE id=%s'
+        sql = 'UPDATE nurse SET name=%s WHERE nid=%s'
         val = (nurseName, nurseID)
         mycursor.execute(sql,val)
         mydb.commit()
@@ -339,7 +339,7 @@ def modify_department():
     elif n == 2:
     #Select Dnum/ID
         os.system("cls")
-        dnum = input('Enter Dept. Number name : ')
+        dnum = input('Enter Dept. ID : ')
         _Budget = input('Enter Budget of Dept. : ')
         HDID = input('Enter Head-Doctor ID : ')
 
@@ -373,7 +373,7 @@ def delete_department():
         deptname = input('Enter Dept. name : ')
 
         #sql in here too
-        sql = 'DELETE FROM DEPARTMENT WHERE dp_name=%s' % (deptname)
+        sql = 'DELETE FROM `DEPARTMENT` WHERE dp_name="%s"' % (deptname)
         mycursor.execute(sql)
         mydb.commit()
 
@@ -381,10 +381,10 @@ def delete_department():
         exit()
     elif n == 2:
         os.system("cls")
-        dnum = input('Enter Dept. Number name : ')
+        dnum = input('Enter Dept. ID : ')
 
         #sql goes here
-        sql = 'DELETE FROM DEPARTMENT WHERE dept_num=%s' % (dnum)
+        sql = 'DELETE FROM `DEPARTMENT` WHERE dept_num=%s' % (dnum)
         mycursor.execute(sql)
         mydb.commit()
 
@@ -445,7 +445,7 @@ def avgMort():
     mycursor.execute(sql)
     result = mycursor.fetchone();
     format_result="{:.2f}".format(result[0])
-    print(format_result,"%",sep="")
+    print("The average mortality rate of all the surgeries is: ", format_result,"%",sep="")
     exit()
 
 def avgCost():
@@ -455,7 +455,7 @@ def avgCost():
     mycursor.execute(sql)
     result = mycursor.fetchone();
     format_result="{:.2f}".format(result[0])
-    print("$",format_result,sep="")
+    print("The average cost of all surgeries: $",format_result,sep="")
     exit()
 
 def maxBudget():
@@ -465,7 +465,7 @@ def maxBudget():
     mycursor.execute(sql)
     result = mycursor.fetchone()
     format_result = "{:.2f}".format(result[0])
-    print("$", format_result,sep="")
+    print("The max budget of all departments is: $", format_result,sep="")
     exit()
 
 
@@ -504,6 +504,7 @@ def conduct_surgury():
     val = (val1, PID)
     mycursor.execute(sql,val)
     mydb.commit()
+    print('------ SUCCESS ------\n')
     exit()
 
 
@@ -530,6 +531,7 @@ def treats():
     val = (patientID, doctorID)
     mycursor.execute(sql,val)
     mydb.commit()
+    print('------ SUCCESS ------\n')
     exit()
 
 
@@ -547,6 +549,7 @@ def surgury_complete():
     val = (val1, int(P_ID))
     mycursor.execute(sql,val)
     mydb.commit()
+    print('------ SUCCESS ------\n')
     exit()
 
 
